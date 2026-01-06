@@ -2,6 +2,7 @@
 #define MENUSCREEN_H
 
 #include <QWidget>
+#include "controller.h"
 
 namespace Ui {
 class MenuScreen;
@@ -12,11 +13,17 @@ class MenuScreen : public QWidget
     Q_OBJECT
 
 public:
-    explicit MenuScreen(QWidget *parent = nullptr);
+    explicit MenuScreen(QWidget *parent, Controller *appController);
     ~MenuScreen();
+
+public slots:
+    void handleQuitButton();
+    void handleBooksIndexPageButton();
+    void handleReaderCardsPageButton();
 
 private:
     Ui::MenuScreen *ui;
+    Controller *appController;
 };
 
 #endif // MENUSCREEN_H

@@ -13,17 +13,62 @@
   <property name="windowTitle">
    <string>Form</string>
   </property>
-  <widget class="QLabel" name="label">
+  <widget class="QLabel" name="label_2">
    <property name="geometry">
     <rect>
-     <x>310</x>
-     <y>190</y>
-     <width>71</width>
-     <height>16</height>
+     <x>120</x>
+     <y>30</y>
+     <width>481</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>26</pointsize>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>Library Management System</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="booksIndexPageButton">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>140</y>
+     <width>281</width>
+     <height>51</height>
     </rect>
    </property>
    <property name="text">
-    <string>MenuScreen</string>
+    <string>Indeks książek</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="readerCardsPageButton">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>200</y>
+     <width>281</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Karty czytelnika</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="quitButton">
+   <property name="geometry">
+    <rect>
+     <x>210</x>
+     <y>260</y>
+     <width>281</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Wyjście</string>
    </property>
   </widget>
  </widget>

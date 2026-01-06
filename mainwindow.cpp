@@ -1,8 +1,10 @@
-#include "mainwindow.h"
-#include "ui_mainwindow.h"
 #include <QSqlDatabase>
 #include <QDebug>
 #include <QDir>
+#include <QMessageBox>
+#include <QCloseEvent>
+#include "mainwindow.h"
+#include "ui_mainwindow.h"
 #include "state.h"
 #include "loginscreen.h"
 #include "userrepository.h"
@@ -22,7 +24,7 @@ MainWindow::MainWindow(QWidget *parent)
 
     initSchema(db);
 
-    menuScreen = new MenuScreen(this);
+    menuScreen = new MenuScreen(this, appController);
     loginScreen = new LoginScreen(this, &appState, userRepository, appController);
 
     appController->registerScreen(ScreenId::Menu, menuScreen);
@@ -52,4 +54,19 @@ MainWindow::~MainWindow()
 {
     delete ui;
     delete appController;
+}
+
+void MainWindow::closeEvent(QCloseEvent *event)
+{
+    const auto result = QMessageBox::question(
+        this,
+        "Zamykanie aplikacji",
+        "Czy na pewno chcesz zamknąć aplikację?"
+        );
+
+    if (result == QMessageBox::Yes) {
+        event->accept();
+    } else {
+        event->ignore();
+    }
 }
