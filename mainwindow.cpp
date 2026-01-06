@@ -25,9 +25,10 @@ MainWindow::MainWindow(QWidget *parent)
     menuScreen = new MenuScreen(this);
     loginScreen = new LoginScreen(this, &appState, userRepository, appController);
 
-    appController->registerScreen(ScreenId::Login, loginScreen);
     appController->registerScreen(ScreenId::Menu, menuScreen);
+    appController->registerScreen(ScreenId::Login, loginScreen);
 
+    appController->goTo(ScreenId::Login);
 
     std::optional<UserEntity> user = userRepository.getByUsername("admin");
     if (!user.has_value())
