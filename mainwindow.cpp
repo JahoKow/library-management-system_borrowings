@@ -11,6 +11,7 @@
 #include "schema.h"
 #include "controller.h"
 #include "booksindexscreen.h"
+#include "seed.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -24,10 +25,11 @@ MainWindow::MainWindow(QWidget *parent)
     db.open();
 
     initSchema(db);
+    seedDatabase(db);
 
     menuScreen = new MenuScreen(this, appController);
     loginScreen = new LoginScreen(this, &appState, userRepository, appController);
-    booksIndexScreen = new BooksIndexScreen(this);
+    booksIndexScreen = new BooksIndexScreen(this, bookRepository, db, appController);
     readerCardsScreen = new ReaderCardsScreen(this);
 
     appController->registerScreen(ScreenId::Menu, menuScreen);
@@ -36,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     appController->registerScreen(ScreenId::ReaderCards, readerCardsScreen);
 
 
-    appController->goTo(ScreenId::Login);
+    appController->goTo(ScreenId::BooksIndex);
 
     std::optional<UserEntity> user = userRepository.getByUsername("admin");
     if (!user.has_value())

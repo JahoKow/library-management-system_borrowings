@@ -34,6 +34,7 @@ qt_add_executable(library-management-system
     readercardmapper.h
     readercardrepository.h
     readercardrepository.cpp
+    seed.h
 
 
 

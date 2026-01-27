@@ -36,3 +36,21 @@ std::optional<int> BookRepository::create(BookEntity book)
 
     return std::nullopt;
 }
+
+QList<BookEntity> BookRepository::getAll()
+{
+    QList<BookEntity> entities;
+
+    QSqlQuery query;
+    query.prepare("SELECT * FROM books");
+    query.exec();
+
+
+    while (query.next())
+    {
+        BookEntity entity = bookFromQuery(query);
+        entities.append(entity);
+    }
+
+    return entities;
+}
