@@ -40,7 +40,7 @@ BooksIndexScreen::BooksIndexScreen(QWidget *parent, BookRepository bookRepositor
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnsToContents();
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
-    ui->tableView->verticalHeader()->setVisible(false);
+    ui->tableView->hideColumn(0);
 }
 
 BooksIndexScreen::~BooksIndexScreen()

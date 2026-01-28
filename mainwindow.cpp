@@ -5,13 +5,13 @@
 #include <QCloseEvent>
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include "state.h"
-#include "loginscreen.h"
 #include "userrepository.h"
 #include "schema.h"
 #include "controller.h"
 #include "booksindexscreen.h"
 #include "seed.h"
+#include "state.h"
+#include "loginscreen.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent)
     menuScreen = new MenuScreen(this, appController);
     loginScreen = new LoginScreen(this, &appState, userRepository, appController);
     booksIndexScreen = new BooksIndexScreen(this, bookRepository, db, appController);
-    readerCardsScreen = new ReaderCardsScreen(this);
+    readerCardsScreen = new ReaderCardsScreen(this, appController, db);
 
     appController->registerScreen(ScreenId::Menu, menuScreen);
     appController->registerScreen(ScreenId::Login, loginScreen);
@@ -38,7 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
     appController->registerScreen(ScreenId::ReaderCards, readerCardsScreen);
 
 
-    appController->goTo(ScreenId::BooksIndex);
+    appController->goTo(ScreenId::ReaderCards);
 
     std::optional<UserEntity> user = userRepository.getByUsername("admin");
     if (!user.has_value())
