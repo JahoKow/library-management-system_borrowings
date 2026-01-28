@@ -16,6 +16,11 @@ ReaderCardsScreen::ReaderCardsScreen(QWidget *parent, Controller *appController,
     model->setTable("readercards");
     model->select();
 
+    model->setHeaderData(2, Qt::Horizontal, "Nazwisko");
+    model->setHeaderData(1, Qt::Horizontal, "Imię");
+    model->setHeaderData(3, Qt::Horizontal, "E-mail");
+    model->setHeaderData(4, Qt::Horizontal, "Wiek");
+
     ui->tableView->setModel(model);
     ui->tableView->resizeColumnsToContents();
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
